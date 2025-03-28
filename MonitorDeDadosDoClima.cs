@@ -18,6 +18,7 @@ namespace projeto_observer
         {
             this.observadores = new List<IObservador>();
             this.equipamento = equipamento;
+            this.dados = new DadosMeterologicos();
         }
 
         public void RegistraObservador(IObservador o)
@@ -27,13 +28,7 @@ namespace projeto_observer
 
         public void RemoveObservador(IObservador o)
         {
-            int i = observadores.IndexOf(o);
-            // Note que, na tradução, mantemos a condição original (i > 0).
-            // Caso deseje remover também o primeiro elemento, utilize (i >= 0).
-            if (i > 0)
-            {
-                observadores.RemoveAt(i);
-            }
+            observadores.Remove(o);
         }
 
         public void NotificaObservadores()

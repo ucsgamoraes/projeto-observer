@@ -17,16 +17,11 @@ namespace projeto_observer
 
         public void Coletar()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Dados.SetTemperatura(GetNumero(0, 35));
-                Dados.SetUmidade(GetNumero(10, 100));
-                Dados.SetPressao(GetNumero(900, 1100));
+            Dados.SetTemperatura(GetNumero(0, 35));
+            Dados.SetUmidade(GetNumero(10, 100));
+            Dados.SetPressao(GetNumero(900, 1100));
 
-                monitorDadosClima?.DadosMudaram();
-
-                Thread.Sleep(3000);
-            }
+            monitorDadosClima?.DadosMudaram();
         }
 
         private double GetNumero(double min, double max)

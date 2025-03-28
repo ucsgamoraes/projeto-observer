@@ -32,7 +32,6 @@ namespace projeto_observer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            toggleObservadorUltimos = new Button();
             dgvUltimosRegistros = new DataGridView();
             Temperatura = new DataGridViewTextBoxColumn();
             Umidade = new DataGridViewTextBoxColumn();
@@ -47,7 +46,13 @@ namespace projeto_observer
             lbUmidade = new Label();
             lbPressao = new Label();
             lbTemperatura = new Label();
-            toggleObservadorMedia = new Button();
+            observadorCheck = new CheckBox();
+            label1 = new Label();
+            maxTemp = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
+            minTemp = new TextBox();
+            label4 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUltimosRegistros).BeginInit();
@@ -66,7 +71,6 @@ namespace projeto_observer
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(toggleObservadorUltimos);
             tabPage1.Controls.Add(dgvUltimosRegistros);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
@@ -76,15 +80,6 @@ namespace projeto_observer
             tabPage1.Text = "Últimos 10 Registros";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // toggleObservadorUltimos
-            // 
-            toggleObservadorUltimos.Location = new Point(106, 318);
-            toggleObservadorUltimos.Name = "toggleObservadorUltimos";
-            toggleObservadorUltimos.Size = new Size(139, 23);
-            toggleObservadorUltimos.TabIndex = 1;
-            toggleObservadorUltimos.Text = "Associar Observador";
-            toggleObservadorUltimos.UseVisualStyleBackColor = true;
-            // 
             // dgvUltimosRegistros
             // 
             dgvUltimosRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -92,7 +87,7 @@ namespace projeto_observer
             dgvUltimosRegistros.Location = new Point(6, 6);
             dgvUltimosRegistros.Name = "dgvUltimosRegistros";
             dgvUltimosRegistros.RowHeadersVisible = false;
-            dgvUltimosRegistros.Size = new Size(339, 306);
+            dgvUltimosRegistros.Size = new Size(339, 335);
             dgvUltimosRegistros.TabIndex = 0;
             // 
             // Temperatura
@@ -118,6 +113,12 @@ namespace projeto_observer
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(minTemp);
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Controls.Add(maxTemp);
+            tabPage2.Controls.Add(label1);
             tabPage2.Controls.Add(lbUMPressao);
             tabPage2.Controls.Add(lbUMUmidade);
             tabPage2.Controls.Add(lbUMTemperatura);
@@ -127,7 +128,6 @@ namespace projeto_observer
             tabPage2.Controls.Add(lbUmidade);
             tabPage2.Controls.Add(lbPressao);
             tabPage2.Controls.Add(lbTemperatura);
-            tabPage2.Controls.Add(toggleObservadorMedia);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -139,7 +139,7 @@ namespace projeto_observer
             // lbUMPressao
             // 
             lbUMPressao.AutoSize = true;
-            lbUMPressao.Location = new Point(316, 77);
+            lbUMPressao.Location = new Point(313, 85);
             lbUMPressao.Name = "lbUMPressao";
             lbUMPressao.Size = new Size(25, 15);
             lbUMPressao.TabIndex = 11;
@@ -148,7 +148,7 @@ namespace projeto_observer
             // lbUMUmidade
             // 
             lbUMUmidade.AutoSize = true;
-            lbUMUmidade.Location = new Point(316, 51);
+            lbUMUmidade.Location = new Point(316, 56);
             lbUMUmidade.Name = "lbUMUmidade";
             lbUMUmidade.Size = new Size(17, 15);
             lbUMUmidade.TabIndex = 10;
@@ -157,7 +157,7 @@ namespace projeto_observer
             // lbUMTemperatura
             // 
             lbUMTemperatura.AutoSize = true;
-            lbUMTemperatura.Location = new Point(316, 25);
+            lbUMTemperatura.Location = new Point(313, 27);
             lbUMTemperatura.Name = "lbUMTemperatura";
             lbUMTemperatura.Size = new Size(20, 15);
             lbUMTemperatura.TabIndex = 9;
@@ -166,7 +166,7 @@ namespace projeto_observer
             // txtPressao
             // 
             txtPressao.BorderStyle = BorderStyle.FixedSingle;
-            txtPressao.Location = new Point(110, 74);
+            txtPressao.Location = new Point(110, 83);
             txtPressao.Name = "txtPressao";
             txtPressao.ReadOnly = true;
             txtPressao.Size = new Size(200, 23);
@@ -175,7 +175,7 @@ namespace projeto_observer
             // txtUmidade
             // 
             txtUmidade.BorderStyle = BorderStyle.FixedSingle;
-            txtUmidade.Location = new Point(110, 48);
+            txtUmidade.Location = new Point(110, 54);
             txtUmidade.Name = "txtUmidade";
             txtUmidade.ReadOnly = true;
             txtUmidade.Size = new Size(200, 23);
@@ -184,7 +184,7 @@ namespace projeto_observer
             // txtTemperatura
             // 
             txtTemperatura.BorderStyle = BorderStyle.FixedSingle;
-            txtTemperatura.Location = new Point(110, 23);
+            txtTemperatura.Location = new Point(110, 25);
             txtTemperatura.Name = "txtTemperatura";
             txtTemperatura.ReadOnly = true;
             txtTemperatura.Size = new Size(200, 23);
@@ -193,7 +193,7 @@ namespace projeto_observer
             // lbUmidade
             // 
             lbUmidade.AutoSize = true;
-            lbUmidade.Location = new Point(25, 51);
+            lbUmidade.Location = new Point(25, 56);
             lbUmidade.Name = "lbUmidade";
             lbUmidade.Size = new Size(58, 15);
             lbUmidade.TabIndex = 5;
@@ -202,7 +202,7 @@ namespace projeto_observer
             // lbPressao
             // 
             lbPressao.AutoSize = true;
-            lbPressao.Location = new Point(25, 77);
+            lbPressao.Location = new Point(25, 82);
             lbPressao.Name = "lbPressao";
             lbPressao.Size = new Size(50, 15);
             lbPressao.TabIndex = 4;
@@ -217,20 +217,77 @@ namespace projeto_observer
             lbTemperatura.TabIndex = 3;
             lbTemperatura.Text = "Temperatura:";
             // 
-            // toggleObservadorMedia
+            // observadorCheck
             // 
-            toggleObservadorMedia.Location = new Point(106, 318);
-            toggleObservadorMedia.Name = "toggleObservadorMedia";
-            toggleObservadorMedia.Size = new Size(139, 23);
-            toggleObservadorMedia.TabIndex = 2;
-            toggleObservadorMedia.Text = "Associar Observador";
-            toggleObservadorMedia.UseVisualStyleBackColor = true;
+            observadorCheck.AutoSize = true;
+            observadorCheck.Location = new Point(123, 393);
+            observadorCheck.Name = "observadorCheck";
+            observadorCheck.Size = new Size(132, 19);
+            observadorCheck.TabIndex = 1;
+            observadorCheck.Text = "Associar observador";
+            observadorCheck.UseVisualStyleBackColor = true;
+            observadorCheck.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(25, 105);
+            label1.Name = "label1";
+            label1.Size = new Size(77, 30);
+            label1.TabIndex = 12;
+            label1.Text = "Temperatura \r\nmáxima:";
+            // 
+            // maxTemp
+            // 
+            maxTemp.BorderStyle = BorderStyle.FixedSingle;
+            maxTemp.Location = new Point(110, 112);
+            maxTemp.Name = "maxTemp";
+            maxTemp.ReadOnly = true;
+            maxTemp.Size = new Size(200, 23);
+            maxTemp.TabIndex = 13;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(316, 114);
+            label2.Name = "label2";
+            label2.Size = new Size(20, 15);
+            label2.TabIndex = 14;
+            label2.Text = "°C";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(316, 145);
+            label3.Name = "label3";
+            label3.Size = new Size(20, 15);
+            label3.TabIndex = 17;
+            label3.Text = "°C";
+            // 
+            // minTemp
+            // 
+            minTemp.BorderStyle = BorderStyle.FixedSingle;
+            minTemp.Location = new Point(110, 143);
+            minTemp.Name = "minTemp";
+            minTemp.ReadOnly = true;
+            minTemp.Size = new Size(200, 23);
+            minTemp.TabIndex = 16;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(25, 141);
+            label4.Name = "label4";
+            label4.Size = new Size(77, 30);
+            label4.TabIndex = 15;
+            label4.Text = "Temperatura \rmínima:";
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(377, 399);
+            ClientSize = new Size(377, 457);
+            Controls.Add(observadorCheck);
             Controls.Add(tabControl1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MenuPrincipal";
@@ -241,6 +298,7 @@ namespace projeto_observer
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -249,11 +307,9 @@ namespace projeto_observer
         private TabPage tabPage1;
         private TabPage tabPage2;
         private DataGridView dgvUltimosRegistros;
-        private Button toggleObservadorUltimos;
         private Label lbUmidade;
         private Label lbPressao;
         private Label lbTemperatura;
-        private Button toggleObservadorMedia;
         private TextBox txtPressao;
         private TextBox txtUmidade;
         private TextBox txtTemperatura;
@@ -263,5 +319,12 @@ namespace projeto_observer
         private Label lbUMPressao;
         private Label lbUMUmidade;
         private Label lbUMTemperatura;
+        private CheckBox observadorCheck;
+        private TextBox maxTemp;
+        private Label label1;
+        private Label label3;
+        private TextBox minTemp;
+        private Label label4;
+        private Label label2;
     }
 }
