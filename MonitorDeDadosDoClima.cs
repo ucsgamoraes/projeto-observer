@@ -1,33 +1,17 @@
-﻿using System;
+﻿using projeto_observer.Interfaces;
+using projeto_observer.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace projeto_observer
-{
-    using System;
-    using System.Collections.Generic;
-
-    public interface ISujeitoObservavel
-    {
-        void RegistraObservador(IObservador o);
-        void RemoveObservador(IObservador o);
-        void NotificaObservadores();
-        void DadosMudaram();
-    }
-
-    public interface IObservador
-    {
-        void Atualizar(double temperatura, double humidade, double pressao);
-    }
-
+{    
     public class MonitorDeDadosDoClima : ISujeitoObservavel
     {
         private List<IObservador> observadores;
-        private double temperatura;
-        private double humidade;
-        private double pressao;
+        private DadosMeterologicos dados;
         private EquipamentoDeMonitoramento equipamento;
 
         public MonitorDeDadosDoClima(EquipamentoDeMonitoramento equipamento)
@@ -56,15 +40,15 @@ namespace projeto_observer
         {
             foreach (IObservador item in observadores)
             {
-                item.Atualizar(temperatura, humidade, pressao);
+                item.Atualizar(dados);
             }
         }
 
         public void DadosMudaram()
         {
-            temperatura = equipamento.GetTemperaturaAtual();
-            humidade = equipamento.GetHumidadeAtual();
-            pressao = equipamento.GetPressaoAtual();
+            dados.SetTemperatura(equipamento.GetTemperaturaAtual());
+            dados.SetUmidade(equipamento.GetUmidadeAtual());
+            dados.SetPressao(equipamento.GetPressaoAtual());
             NotificaObservadores();
         }
     }

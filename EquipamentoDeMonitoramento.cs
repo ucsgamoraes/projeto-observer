@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto_observer.Interfaces;
+using projeto_observer.Modelos;
 
 namespace projeto_observer
 {
-    using System;
-    using System.Threading;
 
     public class EquipamentoDeMonitoramento
     {
         private Random gerador = new Random();
         private ISujeitoObservavel monitorDadosClima;
-
-        // Propriedades para armazenar os valores atuais
-        public double TemperaturaAtual { get; private set; }
-        public double HumidadeAtual { get; private set; }
-        public double PressaoAtual { get; private set; }
+        public DadosMeterologicos Dados { get; } = new DadosMeterologicos();
 
         public void Coletar()
         {
             for (int i = 0; i < 10; i++)
             {
-                this.TemperaturaAtual = GetNumero(0, 35);
-                this.HumidadeAtual = GetNumero(10, 100);
-                this.PressaoAtual = GetNumero(900, 1100);
+                Dados.SetTemperatura(GetNumero(0, 35));
+                Dados.SetUmidade(GetNumero(10, 100));
+                Dados.SetPressao(GetNumero(900, 1100));
 
                 monitorDadosClima?.DadosMudaram();
 
@@ -45,17 +41,17 @@ namespace projeto_observer
 
         public double GetTemperaturaAtual()
         {
-            return TemperaturaAtual;
+            return Dados.Temperatura;
         }
 
-        public double GetHumidadeAtual()
+        public double GetUmidadeAtual()
         {
-            return HumidadeAtual;
+            return Dados.Umidade;
         }
 
         public double GetPressaoAtual()
         {
-            return PressaoAtual;
+            return Dados.Pressao;
         }
     }
 
